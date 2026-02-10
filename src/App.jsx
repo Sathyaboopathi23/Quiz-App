@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const API_BASE = "https://sathyaboopathi.pythonanywhere.com/api";
 function App() {
   const [questions, setQuestions] = useState([]);
   const [current, setCurrent] = useState(0);
@@ -11,7 +10,7 @@ function App() {
   const [result, setResult] = useState(null);
 
   useEffect(() => {
-    axios.get(`${API_BASE}/questions/)
+    axios.get("https://sathyaboopathi.pythonanywhere.com/api/questions/")
       .then(res => setQuestions(res.data))
       .catch(err => console.error(err));
   }, []);
@@ -27,7 +26,7 @@ function App() {
   };
 
   const submitQuiz = () => {
-    axios.post(`${API_BASE}/submit-result/`, {
+    axios.post("https://sathyaboopathi.pythonanywhere.com/api/submit-result/", {
       username: username,
       answers: answers
     }).then(res => {
